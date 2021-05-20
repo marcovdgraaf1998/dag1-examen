@@ -38,32 +38,42 @@ if (isset($_POST['submit'])) {
         header('Location: ./index.php?signup=email');
         exit;
     } else {
-        header('Location: ./index.php?signup=success');
 
-        # Geen errors -> opslaan in database
-        $query = "INSERT INTO inschrijvingen(blok_id, naam, adres, plaats, telefoonnummer, email, lid)";
-        $query .= "VALUES('$iBlokId', '$sNaam', '$sAdres', '$sPlaats', '$iTelefoonnummer', '$sEmail', '$bLid')";
+        $matchedQuery = mysqli_query($mysqli, "SELECT * FROM inschrijvingen WHERE email = '$sEmail'");
+
+        # Inschrijving met die naam bestaat al
+        if (mysqli_num_rows($matchedQuery) == 1) {
+            $matchedRow = mysqli_fetch_array($matchedQuery);
+            # Redirect naar evt. verwijder pagina
+            header('Location:./ingeschreven.php?inschrijving_id=' . $matchedRow['inschrijving_id']);
+        } else {
+            # Geen errors -> opslaan in database en redirect terug
+            header('Location: ./index.php?signup=success');
     
-        $minPlek = $iPlekken - 1;
-        $queryBlokken = "UPDATE blokken SET plekken = '$minPlek' WHERE blok_id = '$iBlokId'";
-
-        $result = mysqli_query($mysqli, $query);
-        $resultBlokken = mysqli_query($mysqli, $queryBlokken);
-
-        if ($result) {
-            # Verstuur email
-            $to = $sEmail;
-            $subject = 'Inschrijving schaatsen voor blok ' . $iBlokId;
-            $message = '<h1>Uw inschrijving voor schaatsen</h1>';
-            $message .= '<p>Hierbij bevestigen wij uw inschrijving van blok ' . $iBlokId . '</p>';
-            $message .= '<p>U heeft gekozen voor de datum: ' . $sDatum . ' van '. $sStartTijd . ' tot ' . $sEindTijd . '</p>';
-            $message .= '<br/> <p>Wij hopen u snel te zien!</p>';
-
-            $headers = 'From ftp84999' . "\r\n" . 'Reply-To: ftp84999' . "\r\n" . 'X-Mailer: PHP/' . phpversion();
-            $headers .= 'MIME-Version: 1.0' . "\r\n";
-            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-
-            mail($to, $subject, $message, $headers);
+            $query = "INSERT INTO inschrijvingen(blok_id, naam, adres, plaats, telefoonnummer, email, lid)";
+            $query .= "VALUES('$iBlokId', '$sNaam', '$sAdres', '$sPlaats', '$iTelefoonnummer', '$sEmail', '$bLid')";
+        
+            $minPlek = $iPlekken - 1;
+            $queryBlokken = "UPDATE blokken SET plekken = '$minPlek' WHERE blok_id = '$iBlokId'";
+    
+            $result = mysqli_query($mysqli, $query);
+            $resultBlokken = mysqli_query($mysqli, $queryBlokken);
+    
+            if ($result) {
+                # Verstuur email
+                $to = $sEmail;
+                $subject = 'Inschrijving schaatsen voor blok ' . $iBlokId;
+                $message = '<h1>Uw inschrijving voor schaatsen</h1>';
+                $message .= '<p>Hierbij bevestigen wij uw inschrijving van blok ' . $iBlokId . '</p>';
+                $message .= '<p>U heeft gekozen voor de datum: ' . $sDatum . ' van '. $sStartTijd . ' tot ' . $sEindTijd . '</p>';
+                $message .= '<br/> <p>Wij hopen u snel te zien!</p>';
+    
+                $headers = 'From ftp84999' . "\r\n" . 'Reply-To: ftp84999' . "\r\n" . 'X-Mailer: PHP/' . phpversion();
+                $headers .= 'MIME-Version: 1.0' . "\r\n";
+                $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+    
+                mail($to, $subject, $message, $headers);
+            }
         }
     }
 }

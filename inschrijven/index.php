@@ -32,50 +32,54 @@
 </head>
 <body>
 <div class="container">
-    <div class="text-center mt-4">
-        <h1>Inschrijven voor blok <?= $iBlokId ?></h1>
+    <div class="card mt-4 p-3">
+        <div class="text-center mt-4">
+            <h1>Inschrijven voor blok <?= $iBlokId ?></h1>
+            <h5>Datum: <?= $sDatum ?> <span>om <?= $sStartTijd ?> - <?= $sEindTijd ?></span></h5>
+            <p>Er <?php if($iPlekken > 1) {echo 'zijn';} else {echo 'is';} ?> nog <strong><?= $iPlekken ?> </strong> <?php if($iPlekken > 1) {echo 'plekken';} else {echo 'plek';} ?> beschikbaar</p>
+        </div>
+        <form method="POST" action="./inschrijven.php">
+            <input type="hidden" name="blok_id" id="blok_id" value="<?= $iBlokId ?>">
+            <input type="hidden" name="datum" id="datum" value="<?= $sDatum ?>">
+            <input type="hidden" name="start_tijd" id="start_tijd" value="<?= $sStartTijd ?>">
+            <input type="hidden" name="eind_tijd" id="eind_tijd" value="<?= $sEindTijd ?>">
+            <input type="hidden" name="plekken" id="plekken" value="<?= $iPlekken ?>">
+            <div class="form-group">
+                <label for="naam">Naam</label>
+                <input type="text" class="form-control" name="naam" id="naam">
+            </div>
+            <div class="form-row mt-4">
+                <div class="form-group col-md-6">
+                    <label for="adres">Adres</label>
+                    <input type="text" class="form-control" name="adres" id="adres">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="plaats">Plaats</label>
+                    <input type="text" class="form-control" name="plaats" id="plaats">
+                </div>
+            </div>
+            <div class="form-row mt-4">
+                <div class="form-group col-md-6">
+                    <label for="telefoonnummer">Telefoonnummer</label>
+                    <input type="number" class="form-control" name="telefoonnummer" id="telefoonnummer">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="email">Emailadres</label>
+                    <input type="email" class="form-control" name="email" id="email">
+                </div>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="lid" name="lid" value="0">
+                <label class="form-check-label" for="lid">
+                    Ik ben een lid (geen leden dienen bij toegang te betalen).
+                </label>
+            </div>
+            <div class="d-flex justify-content-between mt-5">
+                <a href="../index.php">Terug naar overzicht</a>
+                <input type="submit" class="btn btn-primary form-control w-25" value="Inschrijven" name="submit" id="submit">
+            </div>
+        </form>
     </div>
-    <form method="POST" action="./inschrijven.php">
-        <input type="hidden" name="blok_id" id="blok_id" value="<?= $iBlokId ?>">
-        <input type="hidden" name="datum" id="datum" value="<?= $sDatum ?>">
-        <input type="hidden" name="start_tijd" id="start_tijd" value="<?= $sStartTijd ?>">
-        <input type="hidden" name="eind_tijd" id="eind_tijd" value="<?= $sEindTijd ?>">
-        <input type="hidden" name="plekken" id="plekken" value="<?= $iPlekken ?>">
-        <div class="form-group">
-            <label for="naam">Naam</label>
-            <input type="text" class="form-control" name="naam" id="naam">
-        </div>
-        <div class="form-row mt-4">
-            <div class="form-group col-md-6">
-                <label for="adres">Adres</label>
-                <input type="text" class="form-control" name="adres" id="adres">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="plaats">Plaats</label>
-                <input type="text" class="form-control" name="plaats" id="plaats">
-            </div>
-        </div>
-        <div class="form-row mt-4">
-            <div class="form-group col-md-6">
-                <label for="telefoonnummer">Telefoonnummer</label>
-                <input type="number" class="form-control" name="telefoonnummer" id="telefoonnummer">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="email">Emailadres</label>
-                <input type="email" class="form-control" name="email" id="email">
-            </div>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="lid" name="lid" value="0">
-            <label class="form-check-label" for="lid">
-                Ik ben een lid (geen leden dienen bij toegang te betalen).
-            </label>
-        </div>
-        <div class="buttons mt-3">
-            <a href="../index.php">Terug naar overzicht</a>
-            <input type="submit" class="btn btn-primary form-control col-3 float-right" value="Inschrijven" name="submit" id="submit">
-        </div>
-    </form>
 </div>
 </body>
 </html>
