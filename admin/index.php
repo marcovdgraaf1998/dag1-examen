@@ -18,6 +18,7 @@
 	<title>Login admin</title>
 </head>
 <body>
+	<?php include '../includes/header.php'; ?>
 	<div class="container">
 		<div class="card mt-4 p-3">
 			<h1 class="text-center">Login admin</h1>

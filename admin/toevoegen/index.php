@@ -59,7 +59,7 @@
                 </div>
                 <div class="d-flex justify-content-between mt-5">
                     <a href="../overzicht.php">Terug naar overzicht</a>
-                    <input type="submit" class="btn btn-primary form-control w-25" value="Inschrijven" name="submit" id="submit">
+                    <input type="submit" class="btn btn-primary form-control w-25" value="Toevoegen" name="submit" id="submit">
                 </div>
             </form>
         </div>
