@@ -7,22 +7,25 @@
 		$signupCheck = $_GET['signup'];
 		
 		if ($signupCheck == 'verwijderd') {
-            echo '<div class="alert alert-danger text-center" role="alert">Uw inschrijving is verwijderd!</div>';
-		} 	
+            echo '<div class="alert alert-danger text-center mb-0 border-0 rounded-0 alert-dismissible fade show" role="alert">Uw inschrijving is verwijderd! <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+		} else if ($signupCheck == 'success') {
+			echo '<div class="alert alert-success text-center mb-0 border-0 rounded-0" role="alert">U bent ingeschreven! U heeft een bevestiging via de mail gekregen. <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+		}
 	}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 	<?php 
-		include './includes/header.php';
+		include './includes/head.php';
 	?>
 	<title>Inschrijven</title>
 <body>
+	<?php include './includes/header.php'; ?>
 	<div class="container">
-		<div class="card mt-4 p-3">
-			<div class="text-center pb-2">
-				<h1>Inschrijven</h1>
+		<div class="card mt-4 p-4">
+			<div class="pb-2 pl-2">
+				<h2>Inschrijven</h2>
 				<p>Schrijf u hier nu in voor een blok om te schaatsen!</p>
 			</div>
 			<div class="table-responsive">
@@ -33,7 +36,7 @@
 						<th>Van</th>
 						<th>Tot</th>
 						<th>Plekken over</th>
-						<th>Actie</th>
+						<th></th>
 					</tr>
 						<?php while ($row = mysqli_fetch_array($query)) : ?>
 						<tr>

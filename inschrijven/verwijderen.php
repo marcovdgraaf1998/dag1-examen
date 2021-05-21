@@ -18,12 +18,12 @@
             exit;
         } else {
             # Fout in query
-            echo '<div class="alert alert-danger text-center" role="alert">Er ging iets mis met het verwijderen!</div>';
+            echo '<div class="alert alert-danger text-center mb-0 border-0 rounded-0" role="alert">Er ging iets mis met het verwijderen!</div>';
             exit;
         }
     } else {
         # Geen geldig id
-        echo '<div class="alert alert-danger text-center" role="alert">Er ging iets mis, geen geldig id!</div>';
+        echo '<div class="alert alert-danger text-center mb-0 border-0 rounded-0" role="alert">Er ging iets mis, geen geldig id!</div>';
         exit;
     }
 

@@ -27,6 +27,9 @@
     } else if (!is_string($sDatum) || !is_string($sStartTijd) || !is_string($sEindTijd)) {
         header('Location: ./index.php?blok=char');
         exit;
+    } else if (strlen($sStartTijd) > 5 || strlen($sEindTijd) > 5) {
+        header('Location: ./index.php?blok=long');
+        exit;
     } else {
         $query = "INSERT INTO blokken (datum, start_tijd, eind_tijd, plekken, zichtbaar)";
         $query .= "VALUES ('$sDatum', '$sStartTijd', '$sEindTijd', '$iPlekken', '$bZichtbaar')";

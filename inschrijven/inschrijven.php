@@ -20,8 +20,10 @@ if (isset($_POST['submit'])) {
     # Zet lid op true wanneer hij aangevinkt is
     if (isset($_POST['lid'])) {
         $bLid = 1;
+        $lidTekst = ' lid en voor u is het <strong>gratis.</strong>';
     } else {
         $bLid = 0;
+        $lidTekst = ' helaas geen lid en dient <strong>€5.00</strong> op locatie te betalen.';
     }
 
     # Check voor errors en laat dan notificatie zien
@@ -48,7 +50,7 @@ if (isset($_POST['submit'])) {
             header('Location:./ingeschreven.php?inschrijving_id=' . $matchedRow['inschrijving_id']);
         } else {
             # Geen errors -> opslaan in database en redirect terug
-            header('Location: ./index.php?signup=success');
+            header('Location: ../index.php?signup=success');
     
             $query = "INSERT INTO inschrijvingen(blok_id, naam, adres, plaats, telefoonnummer, email, lid)";
             $query .= "VALUES('$iBlokId', '$sNaam', '$sAdres', '$sPlaats', '$iTelefoonnummer', '$sEmail', '$bLid')";
@@ -64,8 +66,9 @@ if (isset($_POST['submit'])) {
                 $to = $sEmail;
                 $subject = 'Inschrijving schaatsen voor blok ' . $iBlokId;
                 $message = '<h1>Uw inschrijving voor schaatsen</h1>';
-                $message .= '<p>Hierbij bevestigen wij uw inschrijving van blok ' . $iBlokId . '</p>';
-                $message .= '<p>U heeft gekozen voor de datum: ' . $sDatum . ' van '. $sStartTijd . ' tot ' . $sEindTijd . '</p>';
+                $message .= '<p>Beste '. $sNaam .', </p><br/>' . '<p>Hierbij bevestigen wij uw inschrijving van blok ' . $iBlokId . '.</p>';
+                $message .= '<p>Uw datum: ' . $sDatum . ' van '. $sStartTijd . ' tot ' . $sEindTijd . '</p>';
+                $message .= '<p>U bent' . $lidTekst . '<p>';
                 $message .= '<br/> <p>Wij hopen u snel te zien!</p>';
     
                 $headers = 'From ftp84999' . "\r\n" . 'Reply-To: ftp84999' . "\r\n" . 'X-Mailer: PHP/' . phpversion();

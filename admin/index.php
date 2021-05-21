@@ -4,9 +4,9 @@
 		$loginCheck = $_GET['login'];
 
 		if ($loginCheck == 'empty') {
-			echo '<div class="alert alert-danger text-center" role="alert">Niet alle velden zijn ingevuld!</div>';
+			echo '<div class="alert alert-danger text-center mb-0 border-0 rounded-0 alert-dismissible fade show" role="alert">Niet alle velden zijn ingevuld! <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
 		} else if ($loginCheck == 'failed') {
-            echo '<div class="alert alert-danger text-center" role="alert">Onjuiste inloggegevens!</div>';
+            echo '<div class="alert alert-danger text-center mb-0 border-0 rounded-0 alert-dismissible fade show" role="alert">Onjuiste inloggegevens! <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
         }
 	}
 ?>
@@ -14,7 +14,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include '../includes/header.php'; ?>
+    <?php include '../includes/head.php'; ?>
 	<title>Login admin</title>
 </head>
 <body>

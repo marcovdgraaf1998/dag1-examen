@@ -29,7 +29,11 @@
     } else if (!is_string($sDatum) || !is_string($sStartTijd) || !is_string($sEindTijd)) {
         header('Location: ./index.php?blok_id=' . $iBlokId .'&blok=char');
         exit;
-    } else {
+    } else if (strlen($sStartTijd) > 5 || strlen($sEindTijd) > 5) {
+        header('Location: ./index.php?blok_id=' . $iBlokId .'&blok=long');
+        exit;
+    }
+    else {
         $query = "UPDATE blokken SET datum = '$sDatum', start_tijd = '$sStartTijd', eind_tijd = '$sEindTijd', plekken = '$iPlekken', zichtbaar = '$bZichtbaar' WHERE blok_id = '$iBlokId'";
     
         $result = mysqli_query($mysqli, $query);

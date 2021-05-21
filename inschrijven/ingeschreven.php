@@ -9,10 +9,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include '../includes/header.php'?>
+    <?php include '../includes/head.php'?>
     <title>Ingeschreven</title>
 </head>
 <body>
+    <?php include '../includes/includes/header.php'; ?>
     <div class="container">
         <div class="card text-center p-3 mt-5">
             <h3>U bent al ingeschreven voor een blok!</h3>
